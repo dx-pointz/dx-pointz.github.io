@@ -23,7 +23,7 @@ $(document).ready(function () {
     //circleColor: use @default
     data: {
       items: [
-        {text: "Java", count: "236"},
+        {text: "Gaia", count: "30000"},
         {text: ".Net", count: "382"},
         {text: "Php", count: "170"},
         {text: "Ruby", count: "123"},
