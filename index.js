@@ -4,7 +4,7 @@ $(document).ready(function () {
   crossDomain : true,
   }).done(function(jsonTrans){
     var table = "<table>";
-    for(int i = 0; i < jsonTrans.length; i++){
+    for(var i = 0; i < jsonTrans.length; i++){
       $.ajax({
         url:"http://dx-pointz.appspot.com/api/"+jsonTrans[i].personId,
         crossDomain:true,
