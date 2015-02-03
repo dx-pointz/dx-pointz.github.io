@@ -30,7 +30,10 @@ $(document).ready(function () {
           index = 0;
    }, 2000);
   //inicio contador commits
-  $.get("http://dx-pointz.appspot.com/api/transactions").success(function(jsonTransactions){
+  $.ajax({
+  url:"http://dx-pointz.appspot.com/api/transactions";
+  crossDomain:true;
+  }).done(function(jsonTransactions){
     var month = new Date().getMonth() + 1;
     var totalmonth = 0;
     var total = 0;
