@@ -1,14 +1,16 @@
 $(document).ready(function () {
-
-
-  $.get("http://dx-pointz.appspot.com/api/transactions?q={'order':'date',limit:6}", function(jsonDxPointz){
-    var table = "";
+  $.ajax({
+  url: "http://dx-pointz.appspot.com/api/transactions?q={'order':[{p:'date',d:'desc'}],limit:6}",
+  crossDomain : true,
+  }).done(function(jsonDxPointz){
+    var table = "<table>";
     for(int i = 0; i < jsonDxPointz.length; i++){
       table+="<tr><td>"+jsonDxPointz[i].name+"</td>";
-        
+              
       table+="<td>"+jsonDxPointz[i].pointz+"</td></tr>";
     }
-    $("table").html(table);
+    table+="</table>";
+    $(".tableDxPointz").html(table);
   });
 
   /*BOLAS*/
