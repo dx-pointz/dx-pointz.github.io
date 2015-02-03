@@ -1,37 +1,53 @@
 google.load('visualization', '1', {packages: ['corechart']});
     //drawCommits(json);
+
     google.setOnLoadCallback(drawCommits);
 
     function drawCommits() {
-        var json = {"commits": [{ "year":2015,
+        var pointz = new PointzCounter();
+        var commitsJson = pointz.getTransactionsToGraph();
+        var json = {"periodPointz": [{ "year":2015,
                             "month":1,
-                            "commit":541
+                            "pointz":541
                           },{
                             "year":2015,
                             "month":2,
-                            "commit":679
+                            "pointz":679
                           },{
                             "year":2015,
                             "month":3,
-                            "commit":587
+                            "pointz":587
                           },{
                             "year":2015,
                             "month":4,
-                            "commit":621
+                            "pointz":621
+                          },{
+                            "year":2015,
+                            "month":5,
+                            "pointz":693
+                          },{
+                            "year":2015,
+                            "month":6,
+                            "pointz":590
+                          },{
+                            "year":2015,
+                            "month":7,
+                            "pointz":533
                           }]
       };
       var data = new google.visualization.DataTable();
       data.addColumn('date', 'Month');
-      data.addColumn('number', 'Commits');
+      data.addColumn('number', 'Commits efetuados pela Dextra');
 
-      var monthData = json.commits;
+      var monthData = commitsJson.periodPointz;
+      // alert(monthData.length);
 
       for (var i = 0; i < monthData.length; i++) {
         var year = monthData[i].year;
         var month = monthData[i].month;
-        var commit = monthData[i].commit;
-        data.addRow([new Date(year,month), commit]); //-1 pois janeiro = 0
-        //alert(year+"/"+month+"-"+commit);
+        var pointz = monthData[i].pointz;
+        data.addRow([new Date(year,month), pointz]); //-1 pois janeiro = 0
+        //alert(year+"/"+month+"-"+pointz);
       };
 
       var options = {
