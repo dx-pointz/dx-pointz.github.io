@@ -1,15 +1,22 @@
 $(document).ready(function () {
-  var bolas = $(".bubbleChart").children();
+  var bolas = $(".bubbleChart").children().toArray();
   var index = 0;
-  setInterval(205,function() {
-    console.info("FOI");
-      $.moveToCentral(".node");
-      //bolas[index].click();
-      //index++;
-      //if(index >= bolas.length)
-      //  index = 0;
-  });
-  var bubbleChart = new d3.svg.BubbleChart({
+  var __nodes;
+  console.info(bolas);
+  console.log( $(".bubbleChart").children());
+   setInterval(function() {
+        if(!__nodes)
+            __nodes = bubbleChart.getNodes()[0];
+        var __node = __nodes[index];
+        bubbleChart.clickedNode = d3.select(__node);
+        bubbleChart.reset(bubbleChart.centralNode);
+        bubbleChart.moveToReflection(bubbleChart.get().selectAll(".node:not(.active)"), false);
+        bubbleChart.moveToCentral(bubbleChart.clickedNode);
+        index++;
+        if(index >= __nodes.length)
+          index = 0;
+   }, 2000);
+  bubbleChart = new d3.svg.BubbleChart({
     supportResponsive: true,
     //container: => use @default
     size: 600,
@@ -40,7 +47,7 @@ $(document).ready(function () {
       {
         name: "central-click",
         options: {
-          text: "(See more detail)",
+          text: "",
           style: {
             "font-size": "12px",
             "font-style": "italic",
@@ -51,7 +58,7 @@ $(document).ready(function () {
           },
           attr: {dy: "65px"},
           centralClick: function() {
-            alert("Here is more details!!");
+            //alert("Here is more details!!");
           }
         }
       },
