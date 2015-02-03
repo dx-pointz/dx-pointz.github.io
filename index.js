@@ -29,9 +29,8 @@ $(document).ready(function () {
         if(index >= __nodes.length)
           index = 0;
    }, 2000);
-<<<<<<< HEAD
 
-=======
+
   //inicio contador commits
   $.ajax({
   url:"http://dx-pointz.appspot.com/api/transactions";
@@ -48,7 +47,10 @@ $(document).ready(function () {
     }
   });
   //fim contador commits
->>>>>>> 8ba69cb5b9ba7ccd1005d0c08e3eb1f56146a78d
+  //ah é???? #YOLO
+
+
+
     bubbleChart = new d3.svg.BubbleChart({
     supportResponsive: true,
     //container: => use @default
