@@ -1,9 +1,6 @@
 $(document).ready(function () {
-  var bolas = $(".bubbleChart").children().toArray();
   var index = 0;
   var __nodes;
-  console.info(bolas);
-  console.log( $(".bubbleChart").children());
    setInterval(function() {
         if(!__nodes)
             __nodes = bubbleChart.getNodes()[0];
@@ -16,7 +13,20 @@ $(document).ready(function () {
         if(index >= __nodes.length)
           index = 0;
    }, 2000);
-  bubbleChart = new d3.svg.BubbleChart({
+  //inicio contador commits
+  $.get("http://dx-pointz.appspot.com/api/transactions").success(function(jsonTransactions){
+    var month = new Date().getMonth() + 1;
+    var totalmonth = 0;
+    var total = 0;
+    for(var transaction in jsonTransactions){
+      total += 1;
+      if(parseInt(transaction.date.split("/")[2] == month))
+        totalmonth += 1;
+    }
+    alert('total commits:'+total);
+  });
+  //fim contador commits
+    bubbleChart = new d3.svg.BubbleChart({
     supportResponsive: true,
     //container: => use @default
     size: 600,
