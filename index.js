@@ -37,7 +37,7 @@ $(document).ready(function () {
 
   //inicio contador commits
   $.ajax({
-  url:"http://dx-pointz.appspot.com/api/transactions";
+  url:"http://dx-pointz.appspot.com/api/transactions",
   crossDomain:true;
   }).done(function(jsonTransactions){
     var month = new Date().getMonth() + 1;
