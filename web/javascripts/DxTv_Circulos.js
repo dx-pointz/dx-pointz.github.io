@@ -16,6 +16,7 @@ $(document).ready(function () {
           index = 0;
    }, 2000);
 
+  
   bubbleChart = new d3.svg.BubbleChart({
   supportResponsive: true,
   //container: => use @default
