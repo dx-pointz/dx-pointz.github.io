@@ -4,37 +4,8 @@ google.load('visualization', '1', {packages: ['corechart']});
     google.setOnLoadCallback(drawCommits);
 
     function drawCommits() {
-        var pointz = new PointzCounter();
-        var commitsJson = pointz.getTransactionsToGraph();
-        var json = {"periodPointz": [{ "year":2015,
-                            "month":1,
-                            "pointz":541
-                          },{
-                            "year":2015,
-                            "month":2,
-                            "pointz":679
-                          },{
-                            "year":2015,
-                            "month":3,
-                            "pointz":587
-                          },{
-                            "year":2015,
-                            "month":4,
-                            "pointz":621
-                          },{
-                            "year":2015,
-                            "month":5,
-                            "pointz":693
-                          },{
-                            "year":2015,
-                            "month":6,
-                            "pointz":590
-                          },{
-                            "year":2015,
-                            "month":7,
-                            "pointz":533
-                          }]
-      };
+      var pointz = new PointzCounter();
+      var commitsJson = pointz.getTransactionsToGraph();
       var data = new google.visualization.DataTable();
       data.addColumn('date', 'Month');
       data.addColumn('number', 'Commits efetuados pela Dextra');

@@ -45,6 +45,7 @@
   				for(var mes in pointz[ano]){
             json.periodPointz.push({"year":ano, "month":mes, "pointz":pointz[ano][mes]});
           }
+
   			}
   			return json;
   		}
@@ -69,34 +70,4 @@
           this.getTransactions();
         return this.toJsonTeams();
   		}
-
-
-
-	  
   }
-
-
-
-/*
-  antes: {"01/2015":25, "02/2015":10}
-
-  agora: {"2015": 
-  			[
-  				{"01": 30},
-  				{"02":25}
-  			],
-  		  "2012":
-  			[
-  				{"01":23}
-  			]	
-  		};
-
-  {"commits":[{
-  	"year" : 2015,
-  	"month" : 55,
-  	"commit" : 5454
-  }
-
-  				]}
-
-*/
