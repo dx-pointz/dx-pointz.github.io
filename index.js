@@ -11,13 +11,15 @@ $(document).ready(function () {
   });
   //inicio contador commits
   $.get("http://dx-pointz.appspot.com/api/transactions").success(function(jsonTransactions){
+    var jsonTransactions =  eval('([{"id":"/transactions/4649310150983680","personId":"/people/5186378094608384","type":"GITHUB_COMMIT","date":"2015/02/03 10:50:08","reference":"62f42c985f8d568d4abc9cfca2a15de2ff586d3a"},{"id":"/transactions/6011557007851520","personId":"/people/5171105190903808","type":"GITHUB_COMMIT","date":"2015/02/02 19:07:00","reference":"c1afe4a2f39bcca6124a4123b1f76e1fc49df51c"}])');
     var month = new Date().getMonth() + 1;
     var totalmonth = 0;
     var total = 0;
-    for(var transaction in jsonTransactions){
+    for(var i = 0; i < jsonTransactions.length;i++){
       total += 1;
-      if(parseInt(transaction.date.split("/")[2] == month))
+      if(parseInt(jsonTransactions[i].date.split("/")[1] == month)){
         totalmonth += 1;
+      }
     }
     alert('total commits:'+total);
   });
