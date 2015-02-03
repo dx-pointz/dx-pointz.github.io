@@ -7,7 +7,7 @@
  		}
  		return peopleHash[personId];
  	}
-
+ 
  	this.requestTeams = function(personId){
  		var personTeams = [];
 		var sucesso = function(jsonPeople){
