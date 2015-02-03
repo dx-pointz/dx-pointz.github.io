@@ -13,19 +13,7 @@ $(document).ready(function () {
         if(index >= __nodes.length)
           index = 0;
    }, 2000);
-  //inicio contador commits
-  $.get("http://dx-pointz.appspot.com/api/transactions").success(function(jsonTransactions){
-    var month = new Date().getMonth() + 1;
-    var totalmonth = 0;
-    var total = 0;
-    for(var i = 0; i < jsonTransactions.length;i++){
-      total += 1;
-      if(parseInt(jsonTransactions[i].date.split("/")[1] == month)){
-        totalmonth += 1;
-      }
-    }
-  });
-  //fim contador commits
+
     bubbleChart = new d3.svg.BubbleChart({
     supportResponsive: true,
     //container: => use @default
