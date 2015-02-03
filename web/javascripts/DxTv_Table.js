@@ -10,7 +10,8 @@ $(document).ready(function () {
     //   tabela.append(tr);
     //}
     var commitsDinamicos = $(".commitersList");
-    var json = [{name: "João Carlos Nascimento Filho", type: "GITHUB_COMMIT"},{name: "Guel", type: "GITHUB_COMMIT"}];
+    var json = [{name: "Julio Carvalho", type: "GITHUB_COMMIT"},{name: "Luan Nico", type: "GITHUB_COMMIT"},
+    {name: "Sabrina", type: "GITHUB_COMMIT"}, {name: "Guilherme Carreiro", type: "GITHUB_COMMIT"}, {name: "Antonio Vianna", type: "GITHUB_COMMIT"}];
     json.forEach(function(obj){
       commitsDinamicos.append("<li><a class='ls-ico-user'>"+ obj.name +" <span class='ls-tag ls-float-right'>"+
                                     obj.type+"</span></a></li>");
@@ -40,5 +41,6 @@ $(document).ready(function () {
       });
     }, 2000);
   };
+
   createTable();
 });
