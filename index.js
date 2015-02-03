@@ -2,12 +2,16 @@ $(document).ready(function () {
   $.ajax({
   url: "http://dx-pointz.appspot.com/api/transactions?q={'order':[{p:'date',d:'desc'}],limit:6}",
   crossDomain : true,
-  }).done(function(jsonDxPointz){
+  }).done(function(jsonTrans){
     var table = "<table>";
-    for(int i = 0; i < jsonDxPointz.length; i++){
-      table+="<tr><td>"+jsonDxPointz[i].name+"</td>";
-              
-      table+="<td>"+jsonDxPointz[i].pointz+"</td></tr>";
+    for(int i = 0; i < jsonTrans.length; i++){
+      $.ajax({
+        url:"http://dx-pointz.appspot.com/api/"+jsonTrans[i].personId,
+        crossDomain:true,
+      }).done(function(jsonPeople){
+        table+="<tr><td>"+jsonPeople[i].name+"</td>";        
+        table+="<td>"+jsonPeople[i].pointz+"</td></tr>";        
+      });
     }
     table+="</table>";
     $(".tableDxPointz").html(table);
