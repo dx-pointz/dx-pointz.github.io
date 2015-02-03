@@ -1,4 +1,20 @@
 $(document).ready(function () {
+  $.ajax({
+  url: "http://dx-pointz.appspot.com/api/transactions?q={'order':[{p:'date',d:'desc'}],limit:6}",
+  crossDomain : true,
+  }).done(function(jsonDxPointz){
+    var table = "<table>";
+    for(int i = 0; i < jsonDxPointz.length; i++){
+      table+="<tr><td>"+jsonDxPointz[i].name+"</td>";
+              
+      table+="<td>"+jsonDxPointz[i].pointz+"</td></tr>";
+    }
+    table+="</table>";
+    $(".tableDxPointz").html(table);
+  });
+
+  /*BOLAS*/
+  var bolas = $(".bubbleChart").children();
   var index = 0;
   var __nodes;
    setInterval(function() {
@@ -13,7 +29,26 @@ $(document).ready(function () {
         if(index >= __nodes.length)
           index = 0;
    }, 2000);
+<<<<<<< HEAD
 
+=======
+  //inicio contador commits
+  $.ajax({
+  url:"http://dx-pointz.appspot.com/api/transactions";
+  crossDomain:true;
+  }).done(function(jsonTransactions){
+    var month = new Date().getMonth() + 1;
+    var totalmonth = 0;
+    var total = 0;
+    for(var i = 0; i < jsonTransactions.length;i++){
+      total += 1;
+      if(parseInt(jsonTransactions[i].date.split("/")[1] == month)){
+        totalmonth += 1;
+      }
+    }
+  });
+  //fim contador commits
+>>>>>>> 8ba69cb5b9ba7ccd1005d0c08e3eb1f56146a78d
     bubbleChart = new d3.svg.BubbleChart({
     supportResponsive: true,
     //container: => use @default
@@ -109,3 +144,5 @@ $(document).ready(function () {
       }]
   });
 });
+
+
