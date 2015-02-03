@@ -1,15 +1,51 @@
 $(document).ready(function () {
+  $.ajax({
+  url: "http://dx-pointz.appspot.com/api/transactions?q={'order':[{p:'date',d:'desc'}],limit:6}",
+  crossDomain : true,
+  }).done(function(jsonDxPointz){
+    var table = "<table>";
+    for(int i = 0; i < jsonDxPointz.length; i++){
+      table+="<tr><td>"+jsonDxPointz[i].name+"</td>";
+              
+      table+="<td>"+jsonDxPointz[i].pointz+"</td></tr>";
+    }
+    table+="</table>";
+    $(".tableDxPointz").html(table);
+  });
+
+  /*BOLAS*/
   var bolas = $(".bubbleChart").children();
   var index = 0;
-  setInterval(205,function() {
-    console.info("FOI");
-      $.moveToCentral(".node");
-      //bolas[index].click();
-      //index++;
-      //if(index >= bolas.length)
-      //  index = 0;
+  var __nodes;
+   setInterval(function() {
+        if(!__nodes)
+            __nodes = bubbleChart.getNodes()[0];
+        var __node = __nodes[index];
+        bubbleChart.clickedNode = d3.select(__node);
+        bubbleChart.reset(bubbleChart.centralNode);
+        bubbleChart.moveToReflection(bubbleChart.get().selectAll(".node:not(.active)"), false);
+        bubbleChart.moveToCentral(bubbleChart.clickedNode);
+        index++;
+        if(index >= __nodes.length)
+          index = 0;
+   }, 2000);
+  //inicio contador commits
+  $.ajax({
+  url:"http://dx-pointz.appspot.com/api/transactions";
+  crossDomain:true;
+  }).done(function(jsonTransactions){
+    var month = new Date().getMonth() + 1;
+    var totalmonth = 0;
+    var total = 0;
+    for(var i = 0; i < jsonTransactions.length;i++){
+      total += 1;
+      if(parseInt(jsonTransactions[i].date.split("/")[1] == month)){
+        totalmonth += 1;
+      }
+    }
   });
-  var bubbleChart = new d3.svg.BubbleChart({
+  //fim contador commits
+    bubbleChart = new d3.svg.BubbleChart({
     supportResponsive: true,
     //container: => use @default
     size: 600,
@@ -40,7 +76,7 @@ $(document).ready(function () {
       {
         name: "central-click",
         options: {
-          text: "(See more detail)",
+          text: "",
           style: {
             "font-size": "12px",
             "font-style": "italic",
@@ -51,7 +87,7 @@ $(document).ready(function () {
           },
           attr: {dy: "65px"},
           centralClick: function() {
-            alert("Here is more details!!");
+            //alert("Here is more details!!");
           }
         }
       },
@@ -104,3 +140,5 @@ $(document).ready(function () {
       }]
   });
 });
+
+
