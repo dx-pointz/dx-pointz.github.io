@@ -1,22 +1,34 @@
 $(document).ready(function () {
-  $.ajax({
-  url: "http://dx-pointz.appspot.com/api/transactions?q={'order':[{p:'date',d:'desc'}],limit:6}",
-  crossDomain : true,
-  }).done(function(jsonTrans){
-    var table = "<table>";
-    for(var i = 0; i < jsonTrans.length; i++){
-      $.ajax({
-        url:"http://dx-pointz.appspot.com/api/"+jsonTrans[i].personId,
-        crossDomain:true,
-      }).done(function(jsonPeople){
-        table+="<tr><td>"+jsonPeople[i].name+"</td>";        
-        table+="<td>"+jsonPeople[i].pointz+"</td></tr>";        
-      });
-    }
-    table+="</table>";
-    $(".tableDxPointz").html(table);
-  });
 
+  var createTable = function () {
+    var quantidade = 6;
+    var tabela = $('#ultimos-commits');
+
+    for (var i = 0; i < quantidade; i++) {
+      var tr = $('<tr>');
+      tr.append($('<td>').addClass('n' + i));
+      tabela.append(tr);
+    }
+
+    setInterval(function() {
+      $.ajax({
+        url: "http://dx-pointz.appspot.com/api/transactions?q={'order':[{p:'date',d:'desc'}],limit:" + quantidade + "}",
+        crossDomain : true,
+      }).done(function(transactions) {
+        $.each(transactions, function(i, transaction) {
+          $.ajax({
+            url: 'http://dx-pointz.appspot.com/api' + transaction.personId,
+            dataType : 'json',
+            crossDomain : true
+          }).done(function (person) {
+            tabela.find('td.n' + i).html(person.name);
+          });
+        });
+      });
+    }, 2000);
+  };
+  createTable();
+  
   /*BOLAS*/
   var bolas = $(".bubbleChart").children();
   var index = 0;
@@ -37,8 +49,8 @@ $(document).ready(function () {
 
   //inicio contador commits
   $.ajax({
-  url:"http://dx-pointz.appspot.com/api/transactions",
-  crossDomain:true
+    url:"http://dx-pointz.appspot.com/api/transactions",
+    crossDomain:true
   }).done(function(jsonTransactions){
     var month = new Date().getMonth() + 1;
     var totalmonth = 0;
@@ -150,5 +162,3 @@ $(document).ready(function () {
       }]
   });
 });
-
-
