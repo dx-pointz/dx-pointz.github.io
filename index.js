@@ -1,14 +1,18 @@
 $(document).ready(function () {
-  var bolas = $(".bubbleChart").children();
   var index = 0;
-  setInterval(205,function() {
-    console.info("FOI");
-      $.moveToCentral(".node");
-      //bolas[index].click();
-      //index++;
-      //if(index >= bolas.length)
-      //  index = 0;
-  });
+  var __nodes;
+   setInterval(function() {
+        if(!__nodes)
+            __nodes = bubbleChart.getNodes()[0];
+        var __node = __nodes[index];
+        bubbleChart.clickedNode = d3.select(__node);
+        bubbleChart.reset(bubbleChart.centralNode);
+        bubbleChart.moveToReflection(bubbleChart.get().selectAll(".node:not(.active)"), false);
+        bubbleChart.moveToCentral(bubbleChart.clickedNode);
+        index++;
+        if(index >= __nodes.length)
+          index = 0;
+   }, 2000);
   //inicio contador commits
   $.get("http://dx-pointz.appspot.com/api/transactions").success(function(jsonTransactions){
     var jsonTransactions =  eval('([{"id":"/transactions/4649310150983680","personId":"/people/5186378094608384","type":"GITHUB_COMMIT","date":"2015/02/03 10:50:08","reference":"62f42c985f8d568d4abc9cfca2a15de2ff586d3a"},{"id":"/transactions/6011557007851520","personId":"/people/5171105190903808","type":"GITHUB_COMMIT","date":"2015/02/02 19:07:00","reference":"c1afe4a2f39bcca6124a4123b1f76e1fc49df51c"}])');
@@ -24,7 +28,7 @@ $(document).ready(function () {
     alert('total commits:'+total);
   });
   //fim contador commits
-  var bubbleChart = new d3.svg.BubbleChart({
+    bubbleChart = new d3.svg.BubbleChart({
     supportResponsive: true,
     //container: => use @default
     size: 600,
@@ -55,7 +59,7 @@ $(document).ready(function () {
       {
         name: "central-click",
         options: {
-          text: "(See more detail)",
+          text: "",
           style: {
             "font-size": "12px",
             "font-style": "italic",
@@ -66,7 +70,7 @@ $(document).ready(function () {
           },
           attr: {dy: "65px"},
           centralClick: function() {
-            alert("Here is more details!!");
+            //alert("Here is more details!!");
           }
         }
       },
