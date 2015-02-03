@@ -1,45 +1,56 @@
-  function PointzCounter {
+  function PointzCounter(){
 
-  		this.years = [];
 
-  		this.getTransactions() = function{
+  		this.getTransactions = function(){
+        var pointz = {};
+        var sucesso = function(jsonTransactions){
+            var totalPointz = 0;
+            for(var i = 0; i < jsonTransactions.length; i++){
+                var anoMesDia = jsonTransactions[i].date.split("/");
+                var ano = anoMesDia[0];
+                var mes = anoMesDia[1];
+                if(pointz[ano] == null){
+                  pointz[ano] = {};
+                }
+                if(pointz[ano][mes] == null){
+                  pointz[ano][mes] = 0;
+                }
+                totalPointz += jsonTransactions[i].value;
+                pointz[ano][mes] += jsonTransactions[i].value;
+            }
+        };
+        // $.ajax({  
+        //   url: "http://dx-pointz.appspot.com/api/transactions",
+        //   crossDomain : true,
+        //   async: false,
+        //   success : sucesso
+        // });
+        sucesso([{"value":53,"id":"/transactions/4651155913179136","personId":"/people/5410987167449088","type":"GITHUB_COMMIT","date":"2015/02/03 13:13:18","reference":"32cf45283c37ce3ca4b54333c29250a91a366f1f"},{"value":44,"id":"/transactions/4702377424715776","personId":"/people/5870819519496192","type":"GITHUB_COMMIT","date":"2015/01/03 13:00:35","reference":"90032a7894071ac4131746ee5c9508e119edcb2e"},{"value":10,"id":"/transactions/4709997502005248","personId":"/people/5973937120870400","type":"GITHUB_COMMIT","date":"2015/02/03 12:09:14","reference":"98dccd11b2515993ee2784b919b6c394d630ad53"}]);
+        return pointz;
+  	  };
+      
 
-			$.get("http://dx-pointz.appspot.com/api/transactions").success(function(jsonTransactions){
-				this.years = [];
-				this.months = [];
-		    	var total = 0;
-		    	for(var i = 0; i < jsonTransactions.length;i++){
-		      		total+= jsonTransactions[i].value;
-		      		var diaMesAno = jsonTransactions[i].date.split("/");
-		      		if(!years[diaMesAno[2]].months[diaMesAno[1]]){
-		      			years[diaMesAno[2]].months[diaMesAno[1]] = 0;
-		      		}
-		      		years[diaMesAno[2]].months[diaMesAno[1]]+= jsonTransactions[i].value;
-		    	}
-		    	return this.years;
-	  		});
-
-  		};
-
-  		this.toJson(old) = function{
-  			var json;
-  			json.commits = [];
-
+  		this.toJson = function(old){
+        var json = {};
+        json.periodPointz = [];
   			for(var ano in old){
   				for(var mes in old[ano]){
-  					json.commits.push({"year": ano, "month": mes, "commit": old[ano][mes]});
-  				}
+            json.periodPointz.push({"year":ano, "month":mes, "pointz":old[ano][mes]});
+          }
+
   			}
   			return json;
   		}
 
-  		this.getTransactionsToGraph() = function{
-  			return this.toJson(this.getTransactions());
+  		this.getTransactionsToGraph = function(){
+        return this.toJson(this.getTransactions());
   		}
 
-  		this.getPointsByTeam() = function{
-
+  		this.getPointsByTeam = function(){
+        
   		}
+
+
 
 	  
   }
