@@ -19,6 +19,7 @@ $(document).ready(function () {
       if(parseInt(transaction.date.split("/")[2] == month))
         totalmonth += 1;
     }
+    alert('total commits:'+total);
   });
   //fim contador commits
   var bubbleChart = new d3.svg.BubbleChart({
