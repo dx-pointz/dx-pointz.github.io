@@ -6,6 +6,8 @@
 
   <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,600,200italic,600italic&subset=latin,vietnamese' rel='stylesheet' type='text/css'>
 
+  <link rel="stylesheet" type="text/css" href="//assets.locaweb.com.br/locastyle/3.7.0/stylesheets/locastyle.css">
+
   <script src="http://phuonghuynh.github.io/js/bower_components/jquery/dist/jquery.min.js"></script>
   <script src="http://phuonghuynh.github.io/js/bower_components/d3/d3.min.js"></script>
   <script src="http://phuonghuynh.github.io/js/bower_components/d3-transform/src/d3-transform.js"></script>
@@ -16,6 +18,7 @@
   <script src="http://phuonghuynh.github.io/js/bower_components/bubble-chart/src/bubble-chart.js"></script>
   <script src="http://phuonghuynh.github.io/js/bower_components/bubble-chart/src/plugins/central-click/central-click.js"></script>
   <script src="http://phuonghuynh.github.io/js/bower_components/bubble-chart/src/plugins/lines/lines.js"></script>
+  <script src="http://assets.locaweb.com.br/locastyle/3.7.0/javascripts/locastyle.js"></script>
   <script src="index.js"></script>
 
    <style>
@@ -31,7 +34,22 @@
   </style>
 </head>
 <body style="background: white">
-  <div class = "tableDxPointz"></div>
-  <div class="bubbleChart"/>
+
+  <div class="ls-topbar">
+
+  <!-- Barra de Notificações -->
+  <div class="ls-notification-topbar">
+
+    <!-- Links de apoio -->
+    <div class="ls-alerts-list">
+      <a href="#" class="ls-ico-bell-o" data-counter="8" data-ls-module="topbarCurtain" data-target="#ls-notification-curtain"><span>Notificações</span></a>
+      <a href="#" class="ls-ico-bullhorn" data-ls-module="topbarCurtain" data-target="#ls-help-curtain"><span>Ajuda</span></a>
+      <a href="#" class="ls-ico-question" data-ls-module="topbarCurtain" data-target="#ls-feedback-curtain"><span>Sugestões</span></a>
+    </div>
+
+
+    <div class = "tableDxPointz"></div>
+    <div class="bubbleChart"/>
+
 </body>
 </html>

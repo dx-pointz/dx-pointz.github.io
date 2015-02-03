@@ -27,7 +27,7 @@
 
   			for(var ano in old){
   				for(var mes in old[ano]){
-  					json.commits.push({"year": ano, "month": mes, "commit": old[ano][mes]})
+  					json.commits.push({"year": ano, "month": mes, "commit": old[ano][mes]});
   				}
   			}
   			return json;
@@ -38,7 +38,7 @@
   		}
 
   		this.getPointsByTeam() = function{
-  			
+
   		}
 
 	  
