@@ -1,4 +1,18 @@
 $(document).ready(function () {
+
+
+  $.get("http://dx-pointz.appspot.com/api/transactions?q={'order':'date',limit:6}", function(jsonDxPointz){
+    var table = "";
+    for(int i = 0; i < jsonDxPointz.length; i++){
+      table+="<tr><td>"+jsonDxPointz[i].name+"</td>";
+        
+      table+="<td>"+jsonDxPointz[i].pointz+"</td></tr>";
+    }
+    $("table").html(table);
+  });
+
+  /*BOLAS*/
+  var bolas = $(".bubbleChart").children();
   var index = 0;
   var __nodes;
    setInterval(function() {
@@ -124,3 +138,5 @@ $(document).ready(function () {
       }]
   });
 });
+
+
