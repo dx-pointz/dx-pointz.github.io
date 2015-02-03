@@ -1,4 +1,13 @@
 $(document).ready(function () {
+
+  $.get("http://dx-pointz.appspot.com/api/transactions?q={'order':'date',limit:6}", function(data){
+    $("table tr td").each(function(data){
+      $(".name").html();
+      $(".dx-pointz").html();
+    });
+  });
+
+  /*BOLAS*/
   var bolas = $(".bubbleChart").children();
   var index = 0;
   setInterval(205,function() {
@@ -104,3 +113,5 @@ $(document).ready(function () {
       }]
   });
 });
+
+
