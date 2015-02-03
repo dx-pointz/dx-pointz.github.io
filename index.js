@@ -9,6 +9,18 @@ $(document).ready(function () {
       //if(index >= bolas.length)
       //  index = 0;
   });
+  //inicio contador commits
+  $.get("http://dx-pointz.appspot.com/api/transactions").success(function(jsonTransactions){
+    var month = new Date().getMonth() + 1;
+    var totalmonth = 0;
+    var total = 0;
+    for(var transaction in jsonTransactions){
+      total += 1;
+      if(parseInt(transaction.date.split("/")[2] == month))
+        totalmonth += 1;
+    }
+  });
+  //fim contador commits
   var bubbleChart = new d3.svg.BubbleChart({
     supportResponsive: true,
     //container: => use @default
