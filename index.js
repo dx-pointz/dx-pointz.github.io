@@ -6,7 +6,7 @@ $(document).ready(function () {
     var table = "<table>";
     for(var i = 0; i < jsonTrans.length; i++){
       $.ajax({
-        url:"http://dx-pointz.appspot.com/api/"+jsonTrans[i].personId,
+        url:"http://dx-pointz.appspot.com/api"+jsonTrans[i].personId,
         crossDomain:true,
       }).done(function(jsonPeople){
         table+="<tr><td>"+jsonPeople[i].name+"</td>";        
