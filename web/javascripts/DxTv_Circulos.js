@@ -16,8 +16,8 @@ $(document).ready(function () {
           index = 0;
    }, 2000);
 
-   var counter = new PointzCounter();
-   var dataPointz = counter.getPointsByTeam();
+   // var counter = new PointzCounter();
+   // var dataPointz = counter.getPointsByTeam();
   bubbleChart = new d3.svg.BubbleChart({
   supportResponsive: true,
   //container: => use @default
@@ -31,7 +31,13 @@ $(document).ready(function () {
   //intersectInc: use @default
   //circleColor: use @default
   data: {
-    items: dataPointz,
+    items: [{text:"Gaia",count:"400"},
+    {text:"Buzz",count:"200"},
+    {text:"MUX",count:"250"},
+    {text:"Walking",count:"350"},
+    {text:"Mustache",count:"380"},
+    {text:"Heisenberg",count:"280"},
+    {text:"Globosat",count:"360"}],
     eval: function (item) {return item.count;},
     classed: function (item) {return item.text.split(" ").join("");}
   },
