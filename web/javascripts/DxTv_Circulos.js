@@ -1,5 +1,15 @@
 $(document).ready(function () {
   /*BOLAS*/
+
+
+  setTimeout(function(){
+    $(".chartContainer").html("<div id='grafic'></div>");
+    //$.getScript("dextra_tempo.js");
+    drawCommits();
+  }, 60000);
+
+
+
   var bolas = $(".bubbleChart").children();
   var index = 0;
   var __nodes;
