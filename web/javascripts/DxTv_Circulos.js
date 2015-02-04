@@ -3,9 +3,12 @@ $(document).ready(function () {
   var bolas = $(".bubbleChart").children();
   var index = 0;
   var __nodes;
+  var bubbleChart;
    setInterval(function() {
-        if(!__nodes)
+        if(!__nodes){
+          if (bubbleChart)
             __nodes = bubbleChart.getNodes()[0];
+        }
         var __node = __nodes[index];
         bubbleChart.clickedNode = d3.select(__node);
         bubbleChart.reset(bubbleChart.centralNode);
@@ -31,7 +34,7 @@ $(document).ready(function () {
   //intersectInc: use @default
   //circleColor: use @default
   data: {
-    items: dataPointz,
+    items: [{item:"Gaia", count:"200"}],
     eval: function (item) {return item.count;},
     classed: function (item) {return item.text.split(" ").join("");}
   },
