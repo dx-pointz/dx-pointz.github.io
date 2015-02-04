@@ -36,7 +36,7 @@ $(document).ready(function () {
       //       commitsDinamicos.append("<li><a class='ls-ico-user'>"+ person.name +" <span class='ls-tag'>"+
       //                               transaction.type+"</span></a></li>");
          
-          });
+          // });
         });
       });
     }, 20000);
