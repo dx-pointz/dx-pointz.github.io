@@ -11,6 +11,7 @@
  	this.requestTeams = function(personId){
  		var personTeams = [];
 		var sucesso = function(jsonPeople){
+			alert(JSON.stringify(jsonPeople));
 	 		var groups = jsonPeople.groups;
 	 		for (var i = 0; i < groups.length; i++){
 	 			var group = groups[i];
@@ -20,12 +21,12 @@
 	 		if (personTeams.length <= 0)
 	 			personTeams[0] = "Outros";
  		}
-		$.ajax({
-	      url: "http://dx-pointz.appspot.com/api"+personId,
-	      crossDomain : true,
-	      async: false,
-	      success : sucesso
-	    }); 		
-	    return personTeams;
+		// $.ajax({
+	 //      url: "http://dx-pointz.appspot.com/api"+personId,
+	 //      crossDomain : true,
+	 //      async: false,
+	 //      success : sucesso
+	 //    }); 		
+	    // return personTeams;
  	}
  }

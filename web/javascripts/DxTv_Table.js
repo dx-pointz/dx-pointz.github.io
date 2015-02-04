@@ -20,6 +20,7 @@ $(document).ready(function () {
    
     //setInterval(function() {
       //var json = [];
+
       $.ajax({
         url: "http://dx-pointz.appspot.com/api/transactions?q={'order':[{p:'date',d:'desc'}],limit:" + quantidade + "}",
         crossDomain : true,
@@ -35,8 +36,9 @@ $(document).ready(function () {
             //json.push({"name": person.name, "type": transaction.type});//FIXME FIXME FIXME PLS
             commitsDinamicos.append("<li><a class='ls-ico-user'>"+ person.name +" <span class='ls-tag ls-float-right'>"+
                                     transaction.type+"</span></a></li>");
+
          
-          });
+           });
         });
       });
     //}, 20000);
