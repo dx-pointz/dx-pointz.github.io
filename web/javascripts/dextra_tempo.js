@@ -27,7 +27,7 @@ google.load('visualization', '1', {packages: ['corechart']});
           title: "Mês"
         },
         vAxis: {
-          title: "Número de Commits"
+          title: "Pontos"
         }
       };
 

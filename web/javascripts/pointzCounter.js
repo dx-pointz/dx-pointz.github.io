@@ -2,12 +2,16 @@
       var pointz;
       var teamControll;
       var totalPointz;
-      this.getTransactions = function(){
+      this.getTransactions = function(mock){
         pointz = {};
         totalPointz = 0;
         var sucesso = function(jsonTransactions){
-            // if(teamControll == null)
-            //   teamControll = new TeamControll();
+            if(!mock && teamControll == null){
+              teamControll = new TeamControll();
+              for(team in teamControll.teams)
+                      pointz[team] = 0;
+              pointz["Outros"] = 0;
+            }
             for(var i = 0; i < jsonTransactions.length; i++){
                 var anoMesDia = jsonTransactions[i].date.split("/");
                 var ano = anoMesDia[0];
@@ -18,14 +22,16 @@
                 if(pointz[ano][mes] == null){
                   pointz[ano][mes] = 0;
                 }
-                // var team;
-                // var teams = teamControll.getTeams(jsonTransactions[i].personId);
-                // for (team in teams)
-                //   if(pointz[team] == null)
-                //     pointz[team] = 0;
+                if (!mock){
+                  var mesAtual = new Date().month+1;
+                  var team;
+                  var teams = teamControll.getTeams(jsonTransactions[i].personId);
+                  for (team in teams && mes == mesAtual){
+                    pointz[team] += jsonTransactions[i].value;
+                  }
+                }
                 totalPointz += jsonTransactions[i].value;
                 pointz[ano][mes] += jsonTransactions[i].value;
-                //pointz[team] += jsonTransactions[i].value;
             }
         };
         $.ajax({
@@ -52,22 +58,22 @@
 
       this.getTransactionsToGraph = function(){
         if(pointz == null)
-          this.getTransactions();
+          this.getTransactions(true);
         return this.toJsonTransactions();
       }
 
       this.toJsonTeams = function(){
-        var json = {};
-        json.items = [];
-        for(var team in pointz){
-          json.items.push({text : team,count : pointz[team]});
+        var jsonArray = [];
+        for(var team in teamControll.teams){
+          jsonArray.push({text : team,count : pointz[team]});
         }
-        return json;
+        jsonArray.push({text : "Outros",count : pointz[team]})
+        return jsonArray;
       }
 
       this.getPointsByTeam = function(){
         if(pointz == null)
-          this.getTransactions();
+          this.getTransactions(false);
         return this.toJsonTeams();
       }    
   }
