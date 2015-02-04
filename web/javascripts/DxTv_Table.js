@@ -20,21 +20,21 @@ $(document).ready(function () {
    
     setInterval(function() {
       //var json = [];
-      $.ajax({
-        url: "http://dx-pointz.appspot.com/api/transactions?q={'order':[{p:'date',d:'desc'}],limit:" + quantidade + "}",
-        crossDomain : true,
-      }).done(function(transactions) {
-        var commitsDinamicos = $(".commitersList");
-        $.each(transactions, function(i, transaction) {
-          $.ajax({
-            url: 'http://dx-pointz.appspot.com/api' + transaction.personId,
-            dataType : 'json',
-            crossDomain : true
-          }).done(function (person) {
-            //tabela.find('td.n' + i).html(person.name);
-            //json.push({"name": person.name, "type": transaction.type});//FIXME FIXME FIXME PLS
-            commitsDinamicos.append("<li><a class='ls-ico-user'>"+ person.name +" <span class='ls-tag'>"+
-                                    transaction.type+"</span></a></li>");
+      // $.ajax({
+      //   url: "http://dx-pointz.appspot.com/api/transactions?q={'order':[{p:'date',d:'desc'}],limit:" + quantidade + "}",
+      //   crossDomain : true,
+      // }).done(function(transactions) {
+      //   var commitsDinamicos = $(".commitersList");
+      //   $.each(transactions, function(i, transaction) {
+      //     $.ajax({
+      //       url: 'http://dx-pointz.appspot.com/api' + transaction.personId,
+      //       dataType : 'json',
+      //       crossDomain : true
+      //     }).done(function (person) {
+      //       //tabela.find('td.n' + i).html(person.name);
+      //       //json.push({"name": person.name, "type": transaction.type});//FIXME FIXME FIXME PLS
+      //       commitsDinamicos.append("<li><a class='ls-ico-user'>"+ person.name +" <span class='ls-tag'>"+
+      //                               transaction.type+"</span></a></li>");
          
           });
         });
