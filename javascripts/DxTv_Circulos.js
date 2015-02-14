@@ -7,7 +7,7 @@ $(document).ready(function () {
     $(".rotulo").html("<h1 class='ls-title-intro ls-ico-stats'>Dextra no tempo</h1>")
     //$.getScript("dextra_tempo.js");
     drawCommits();
-  }, 60000);
+  }, 6000);
 
 
 
