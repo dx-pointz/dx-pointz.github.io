@@ -1,17 +1,13 @@
-google.load('visualization', '1', {packages: ['corechart']});
-    //drawCommits(json);
+  google.load('visualization', '1', {packages: ['corechart']});
 
-    //google.setOnLoadCallback(drawCommits);
-
-    function drawCommits() {
-      var pointz = new PointzCounter();
-      var commitsJson = pointz.getTransactionsToGraph();
+  function drawCommits() {
+    var pointz = new PointzCounter();
+    var commitsJson = pointz.getTransactionsToGraph();
       var data = new google.visualization.DataTable();
       data.addColumn('date', 'Month');
       data.addColumn('number', 'Pontos realizados pela Dextra');
 
       var monthData = commitsJson.periodPointz;
-      // alert(monthData.length);
 
       for (var i = 0; i < monthData.length; i++) {
         var year = monthData[i].year;
@@ -31,8 +27,6 @@ google.load('visualization', '1', {packages: ['corechart']});
         }
       };
 
-      var chart = new google.visualization.LineChart(
-        document.getElementById('grafic'));
+      var chart = new google.visualization.LineChart(document.getElementById('grafic'));
       chart.draw(data, options);
-
     }
